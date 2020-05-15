@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
-import Header from '../Header';
+import WizardSteps from '../WizardSteps';
 import WizardRouters from '../../router/routes';
-import './RootStyle.css';
+import './RootStyle.scss';
 
 class Root extends PureComponent {
 	render() {
 		return (
 			<div className = "containter-fluid">
-					<Header /> 
+					<WizardSteps /> 
 					<WizardRouters />
 			</div>
 		);
