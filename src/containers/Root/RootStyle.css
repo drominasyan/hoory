@@ -1,0 +1,5 @@
+.containter-fluid {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}

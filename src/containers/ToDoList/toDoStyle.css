@@ -1,0 +1,25 @@
+.pageHeader h2 {
+    margin : 0;
+}
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0px;
+}
+
+.AddButton {
+    background: #5b9bd5;
+    border: none;
+    padding: 15px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.pageBack {
+    margin: 0 15px;
+    border: none;
+    padding: 15px 15px;
+    background: #80cbc4;
+    color: white;
+}

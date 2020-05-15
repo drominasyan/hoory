@@ -1,0 +1,32 @@
+.header {
+    background-color: #5B9BD5;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+}
+
+.searchBlock {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchBlock input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.searchBlock span{
+    position: absolute;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    padding: 0 50px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
