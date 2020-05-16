@@ -7,8 +7,12 @@ class Root extends PureComponent {
 	render() {
 		return (
 			<div className = "containter-fluid">
-					<WizardSteps /> 
-					<WizardRouters />
+					<aside id = "sidebar">
+						<WizardSteps />
+					</aside>
+					<section id = "section-content">
+						<WizardRouters />
+					</section>
 			</div>
 		);
    }

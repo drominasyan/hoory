@@ -1,32 +1,23 @@
-.header {
-    background-color: #5B9BD5;
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    padding: 5px 20px;
-}
+.wizardMenu {
+    .menuItem {
+        margin-bottom: 20px;
+        color: white;
+        text-decoration: none;
+        display: flex;
+    }
 
-.searchBlock {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
+    .activeLink i {
+        display: inline-block !important;
+    }
 
-.searchBlock input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-}
+    .title {
+        text-align: center;
+    }
 
-.searchBlock span{
-    position: absolute;
-    right: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ddd;
-    padding: 0 50px;
-    box-sizing: border-box;
-    cursor: pointer;
+    .border {
+        border-top: 1px solid rgba(255,255,255,0.15);
+        margin: 30px 0;
+        width: 190px;
+        display: block;
+    }
 }

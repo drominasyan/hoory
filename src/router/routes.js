@@ -1,44 +1,39 @@
-import React, { Component, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import First  from '../Page/First';
 import Second  from '../Page/Second';
 import Tird   from '../Page/Third';
-import Forth from '../Page/Forth';
-import Fifth  from '../Page/Fifth';
+import SignIn from '../Page/SignIn';
 
 const  WizardRouters = () => {
   return (
+    // Returning Route for wizard steps and signin (starting first)
     <Suspense fallback={<div />}>
       <Switch>
         <Route
           exact
-          path="/first"
+          path="/1"
           render={() => <First />}
         />
         <Route
           exact
-          path="/second"
+          path="/2"
           render={() => <Second />}
         />
         <Route
           exact
-          path="/tird"
+          path="/3"
           render={() => <Tird />}
         />
         <Route
           exact
-          path="/fourth"
-          render={() => <Forth />}
+          path="/signin"
+          render={() => <SignIn />}
         />
-        <Route
-          exact
-          path="/fifth"
-          render={() => <Fifth />}
-        />
-				<Route path="/" render={() => (<Redirect to={{ pathname: `/first` }} />)} />
+				<Route path="/" render={() => (<Redirect to={{ pathname: '/1' }} />)} />
       </Switch>
     </Suspense>
   );
-}
+};
 
 export default WizardRouters;

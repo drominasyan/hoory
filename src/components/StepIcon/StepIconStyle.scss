@@ -1,0 +1,22 @@
+.step {
+    color: white;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    display: flex;
+    font-size: 4px;
+    align-items: center;
+    padding: 4px;
+    justify-content: center;
+    border: 1px solid;
+    margin-right: 15px;
+    > i {
+        display: none !important;
+    }
+}
+
+.conplated {
+    background: green;
+}

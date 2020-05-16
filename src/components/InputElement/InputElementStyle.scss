@@ -1,0 +1,22 @@
+.stringInput {
+    border: none;
+    font-size: 24px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 36px 0;
+}
+
+.stringInput:focus {
+    outline: none;
+}
+
+.inputBlock {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordIcon {
+    position: absolute;
+    right: 12px;
+}

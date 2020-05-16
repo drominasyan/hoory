@@ -2,4 +2,32 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+
+    section, aside {
+        height: 100vh;
+    }
+
+    aside {
+        background: linear-gradient(13.08deg, #600BFB 0%, #6B54FB 100%);
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    section {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        background-color: white;
+        flex-direction: column;
+    }
+
+    > .section-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }

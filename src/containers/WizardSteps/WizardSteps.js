@@ -1,22 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import searchActions from '../../redux/search/actions';
-import './headerStyle.scss';
+import StepIcon from '../../components/StepIcon'
+import HooryIcon from '../../assets/hoory logo white.png'
+import './WizardStepsStyle.scss';
 
 
-const  Header  = (props) => {
+const  WizardSteps  = (props) => {
+
 	return (
+		// We are using Navlink as uncontrolled (Navlink supports all needed functionalities we need)
 		<div className="wizardMenu">
-			Wizard Menu
+			<div className="title">
+				<img src={HooryIcon} alt="hoory" />
+				<span className="border" />
+			</div>
+			<NavLink
+				to="/1"
+				activeClassName="activeLink"
+				className="menuItem"
+			>
+				<StepIcon /> Name your assistant
+			</NavLink>
+			<NavLink
+				to="/2"
+				activeClassName="activeLink"
+				className="menuItem"
+			>
+				<StepIcon /> Select styles
+			</NavLink>
+			<NavLink
+				to="/3"
+				activeClassName="activeLink"
+				className="menuItem"
+				>
+				<StepIcon /> Create your account
+			</NavLink>
 		</div>
 	);
 };
 
 
 // Checking Proptypes.
-Header.propTypes = {
+WizardSteps.propTypes = {
     // entities  	 : PropTypes.object.isRequired,
     // history  	 : PropTypes.object.isRequired,
     // searchValue  : PropTypes.string.isRequired,
@@ -37,4 +65,4 @@ const mapDispatchToProps = {
 	searchListRefresh : searchActions.searchListRefresh,
 };
 
-export default connect(null, null)(withRouter(Header));
+export default connect(null, null)(WizardSteps);
