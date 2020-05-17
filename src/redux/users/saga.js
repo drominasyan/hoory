@@ -1,7 +1,7 @@
 import { all, takeEvery, put, fork, call, select } from 'redux-saga/effects';
 import { removeUserFromList } from './utils';
 import { usersAPI } from '../../helpers/api/users';
-
+import { listToEntities } from '../../helpers/utils';
 import actions from './actions';
 
 function getUserData({ Users }) {
@@ -20,11 +20,11 @@ function* listReload() {
     yield put(actions.setValueUI('loading', true));
     const errorMessage = 'Loading users list failed';
 
-
+	let entities = {};
     try {
       const res = yield call(usersAPI.usersList);
       if (res && res.status === 200) {
-        yield put(actions.listRefresh(res.data.data));
+		entities = listToEntities(res.data.data);
       }
 
     } catch (error) {
@@ -32,6 +32,7 @@ function* listReload() {
       console.log(error);
     }
 
+	yield put(actions.listRefresh(entities));
     yield put(actions.setValueUI('loading', false));
   });
 }
@@ -66,7 +67,7 @@ function* removeUser() {
 	yield takeEvery(takeAction, function* (action) {
 		const { userID } = action.data;
 		try {
-      const res = yield call(usersAPI.removeUser, userID);
+    //   const res = yield call(usersAPI.removeUser, userID);
       // We need to set the res data from removeUser in future
         const newEntities = removeUserFromList(entities, userID);
         yield put(actions.listRefresh(newEntities));

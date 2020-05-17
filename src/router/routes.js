@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import First  from '../Page/First';
 import Second  from '../Page/Second';
 import Tird   from '../Page/Third';
+import Forth   from '../Page/Forth';
 import SignIn from '../Page/SignIn';
 
 const  WizardRouters = () => {
@@ -13,22 +14,27 @@ const  WizardRouters = () => {
         <Route
           exact
           path="/1"
-          render={() => <First />}
+          component={First}
         />
         <Route
           exact
           path="/2"
-          render={() => <Second />}
+          component={Second}
         />
         <Route
           exact
           path="/3"
-          render={() => <Tird />}
+          component={Tird}
+        />
+        <Route
+          exact
+          path="/4"
+          component={Forth}
         />
         <Route
           exact
           path="/signin"
-          render={() => <SignIn />}
+          component={SignIn}
         />
 				<Route path="/" render={() => (<Redirect to={{ pathname: '/1' }} />)} />
       </Switch>

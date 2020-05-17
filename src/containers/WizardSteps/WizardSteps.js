@@ -1,14 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import searchActions from '../../redux/search/actions';
 import StepIcon from '../../components/StepIcon';
 import HooryIcon from '../../assets/hoory logo white.png';
 import './WizardStepsStyle.scss';
 
 
-const  WizardSteps  = (props) => {
+const  WizardSteps  = () => {
 
 	return (
 		// We are using Navlink as uncontrolled (Navlink supports all needed functionalities we need)
@@ -52,17 +50,17 @@ WizardSteps.propTypes = {
     // searchListRefresh  : PropTypes.func.isRequired,
 };
 
-function mapStateToProps(state) {
-    const { searchReducer : { searchValue }, listReducer : { entities } } = state;
-    return {
-		entities,
-		searchValue,
-    };
-}
+// function mapStateToProps(state) {
+//     const { searchReducer : { searchValue }, listReducer : { entities } } = state;
+//     return {
+// 		entities,
+// 		searchValue,
+//     };
+// }
 
-const mapDispatchToProps = {
-	searchValueRefrash : searchActions.searchValueRefrash,
-	searchListRefresh : searchActions.searchListRefresh,
-};
+// const mapDispatchToProps = {
+// 	searchValueRefrash : searchActions.searchValueRefrash,
+// 	searchListRefresh : searchActions.searchListRefresh,
+// };
 
 export default connect(null, null)(WizardSteps);

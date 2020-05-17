@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cloneDeep from 'lodash/cloneDeep';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { history } from '../../redux/store';
 import hooryBg from '../../assets/hoory icon grey.svg';
 import SubmitWizard from '../../components/SubmitWizard';
 import InputElement from '../../components/InputElement';
@@ -13,6 +14,8 @@ import {
 import './FirstStyle.scss';
 
 const  First = ({ baseData, dataRefresh, uiRefresh }) => {
+  const [validFuilds, setValidFuilds] = useState([]);
+  const [submited, setSubmited] = useState(false);
   // Local Events ---------------------------------------------------------------------------------
   const onChangeField = (e) => {
     const rawValue = e.target.value;
@@ -28,6 +31,14 @@ const  First = ({ baseData, dataRefresh, uiRefresh }) => {
     uiRefresh({ isChanged: true });
   };
 
+  const next = () => {
+    setSubmited(true);
+    if (!baseData.name) {
+      return setValidFuilds(['name']);
+    }
+    // // eslint-disable-next-line no-restricted-globals
+    return history.push('./2');
+  };
 
   return (
     <>
@@ -41,9 +52,11 @@ const  First = ({ baseData, dataRefresh, uiRefresh }) => {
         type="text"
         className="nameInput"
         onChange={onChangeField}
+        submited={submited}
+        validFuilds={validFuilds}
         value={baseData.name || ''}
       />
-      <SubmitWizard text="Start" />
+      <SubmitWizard text="Start" onClick={next} />
     </>
   );
 };

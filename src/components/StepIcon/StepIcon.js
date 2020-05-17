@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'react-icons-kit';
-import {ic_done} from 'react-icons-kit/md/ic_done'
+import { ic_done } from 'react-icons-kit/md/ic_done';
 import './StepIconStyle.scss';
- 
+
 const StepIcon = (props) => {
 	const { complated, active } = props;
     const classNames = `${complated && 'complated'}`;

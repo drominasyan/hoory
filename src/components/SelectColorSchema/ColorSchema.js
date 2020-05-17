@@ -23,7 +23,7 @@ const ColorSchema = (props) => {
 };
 
 ColorSchema.propTypes = {
-    colorNumber : PropTypes.number.isRequired,
+    colorNumber : PropTypes.string.isRequired,
     selected    : PropTypes.bool.isRequired,
     onClick : PropTypes.func.isRequired,
     // active  	 : PropTypes.bool.isRequired,

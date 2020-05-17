@@ -2,8 +2,8 @@
     border: none;
     font-size: 24px;
     border-radius: 8px;
+    padding: 10px;
     text-align: center;
-    margin: 36px 0;
 }
 
 .stringInput:focus {
@@ -19,4 +19,22 @@
 .passwordIcon {
     position: absolute;
     right: 12px;
+    cursor: pointer;
+}
+
+.showError input{
+    border: 1px solid red;
+    width: 100%;
+}
+
+.showInfo {
+    position:absolute;
+    right: 10px;
+    top: 15px;
+    color: red;
+    cursor: pointer;
+}
+
+.showPassword {
+    right: 45px;
 }

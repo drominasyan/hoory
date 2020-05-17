@@ -1,18 +1,19 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './SubmitWizardStyle.scss';
 
-const SubmitWizard = (props) => {
-	const { text } = props;
-	return <button type="button" className="submitWizard">{text}</button>;
+const SubmitWizard = ({ text, onClick }) => {
+	return <button type="button" className="submitWizard" onClick={onClick}>{text}</button>;
 };
 
 SubmitWizard.propTypes = {
     text : PropTypes.string,
+    onClick : PropTypes.func.isRequired,
 };
 
 SubmitWizard.defaultProps = {
   text: 'Next',
 };
 
-export default SubmitWizard;
+export default withRouter(SubmitWizard);

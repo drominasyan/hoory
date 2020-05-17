@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import { v4 as uuidv4 } from 'uuid';
+import { history } from '../../redux/store';
 import ColorSchema from '../../components/SelectColorSchema';
 import SelectIcon from '../../components/SelectIcon';
 import SubmitWizard from '../../components/SubmitWizard';
@@ -43,6 +44,11 @@ const  Second = ({ baseData, dataRefresh, uiRefresh }) => {
     uiRefresh({ isChanged: true });
   };
 
+  const next = () => {
+    // // eslint-disable-next-line no-restricted-globals
+    return history.push('./3');
+  };
+
   return (
     <>
       <h3>Select ass`s icon</h3>
@@ -54,7 +60,7 @@ const  Second = ({ baseData, dataRefresh, uiRefresh }) => {
       <div className= "colorSchema">
         {listColors.map(item => <ColorSchema selected={baseData.colorSchema === +item} key={uuidv4()} colorNumber = {item} onClick={() => onChangeSchema(+item)} /> )}
       </div>
-      <SubmitWizard />
+      <SubmitWizard onClick={next} />
     </>
   );
 };

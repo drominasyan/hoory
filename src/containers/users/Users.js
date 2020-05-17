@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import ListTable from '../../components/ListTable/ListTable';
 import usersActions from '../../redux/users/actions';
+import { deriveUsersList } from '../../selectors/users';
 import './UsersStyle.scss';
 
 const Users = (props) =>  {
 
-    const visibleChange = () => {
-        const { modalVisibleRefrash } = props;
-        modalVisibleRefrash(true);
-    };
 
     const logOut = () => {
         // eslint-disable-next-line no-restricted-globals
@@ -34,44 +31,38 @@ const Users = (props) =>  {
         return listReload();
     });
 
-    const { list, searchValue, searchList } = props;
+    const { list, searchList } = props;
     // Showing Searched List if search input is not empty
-    const listWithSerch = searchValue ? searchList : list;
+    // const listWithSerch = searchValue ? searchList : list;
     return (
         <div>
             <div className="pageHeader">
                 <h2>Name Surname</h2>
                 <div>
                     <button type="button" className="pageBack" onClick = {logOut}>Logout</button>
-                    <button type="button" className="AddButton" onClick = {visibleChange}>Add a new to-do</button>
                 </div>
             </div>
             <ListTable
-                list={listWithSerch}
+                list={list}
                 removeItem={removeItem}
-                searchValue = {searchValue}
+                // searchValue = {}
             />
         </div>
     );
 };
 
 Users.propTypes = {
-    modalVisibleRefrash : PropTypes.func.isRequired,
     listReload          : PropTypes.func.isRequired,
     removeList          : PropTypes.func.isRequired,
     list                : PropTypes.array.isRequired,
     searchList          : PropTypes.array.isRequired,
-    searchValue         : PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
-    const { listReducer : { modalVisible, currentDay, entities }, searchReducer : { searchValue, searchList } } = state;
+    const { searchValue } = Users;
     return {
-        modalVisible,
-        currentDay,
-        list : entities[currentDay] || [],
+        list : deriveUsersList(state),
         searchValue,
-        searchList,
     };
 }
 

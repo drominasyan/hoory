@@ -16,8 +16,12 @@ const SelectIcon = ({ type, number, onClick }) => {
 
 SelectIcon.propTypes = {
     type : PropTypes.string.isRequired,
-    number : PropTypes.string.isRequired,
-    onClick : PropTypes.func.isRequired,
+    number : PropTypes.number.isRequired,
+    onClick : PropTypes.func,
+};
+
+SelectIcon.defaultProps = {
+  onClick: () => {},
 };
 
 export default SelectIcon;

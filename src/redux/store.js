@@ -5,9 +5,9 @@ import { createBrowserHistory } from 'history';
 import reducers from './reducers';
 import rootSaga from './sagas';
 
-const history = createBrowserHistory();
-const sagaMiddleware  = createSagaMiddleware();
-const middlewares     = [sagaMiddleware];
+const history        = createBrowserHistory();
+const sagaMiddleware = createSagaMiddleware();
+const middlewares    = [sagaMiddleware];
 
 
 const composeEnhancers = (

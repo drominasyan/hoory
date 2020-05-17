@@ -5,7 +5,9 @@ import actions from './actions';
 
 const initState = new Map({
   idToken : getToken(),
-  user    : getUser(),
+  user : getUser(),
+  baseData : {},
+  UI : {},
 });
 
 export default function authReducer(state = initState, action) {
@@ -20,15 +22,21 @@ export default function authReducer(state = initState, action) {
     case actions.LOGOUT:
       return new Map({
         idToken : null,
-        user    : null,
       });
 
     case actions.AUTH_USER_DATA_REFRESH: {
-      const { userData } = action.data;
-      const target = state.get('user');
-      const result = fill(userData, target);
-      return state.set('user', result);
-    }
+			const { baseData } = action;
+			const target = state.get('baseData');
+			const result = fill(baseData, target, true);
+			return state.set('baseData', result);
+		}
+
+    case actions.UI_REFRESH: {
+			const { UI } = action;
+			const target = state.get('UI');
+			const result = fill(UI, target);
+			return state.set('UI', result);
+		}
 
     default:
       return state;

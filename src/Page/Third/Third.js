@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import cloneDeep from 'lodash/cloneDeep';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { history } from '../../redux/store';
 import SubmitWizard from '../../components/SubmitWizard';
 import InputElement from '../../components/InputElement';
 import googleIcon from '../../assets/google icon.svg';
 import usersActions from '../../redux/users/actions';
+import { validator } from './utils';
 import {
   deriveUserBaseData,
   deriveUsersUI,
@@ -14,6 +16,9 @@ import {
 import './ThirdStyle.scss';
 
 const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
+
+  const [validFuilds, setValidFuilds] = useState([]);
+  const [submited, setSubmited] = useState(false);
   // Local Events ---------------------------------------------------------------------------------
   const onChangeField = (e) => {
     const rawValue = e.target.value;
@@ -28,6 +33,19 @@ const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
     dataRefresh(resData);
     uiRefresh({ isChanged: true });
   };
+
+  const next = () => {
+    setValidFuilds([]);
+    setSubmited(true);
+    const requiredFuilds = ['firstname', 'lastName', 'email', 'confirmEmail', 'password'];
+    // For fuilds Validation we are using cutom validation based on requirement (https://wizard.hoory.com/#/3).
+    const array = validator(requiredFuilds, baseData);
+    if (array.length) {
+      return setValidFuilds([array[0]]);
+    }
+    return history.push('/4');
+  };
+
   return (
     <div className="signup">
       <h3>Create your account</h3>
@@ -41,9 +59,11 @@ const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
             placeholder="First Name"
             type="text"
             className="nameInput firstName"
-            name="firstName"
+            name="firstname"
             onChange={onChangeField}
-            value={baseData.firstName || ''}
+            submited={submited}
+            validFuilds={validFuilds}
+            value={baseData.firstname || ''}
           />
           <InputElement
             placeholder="Last Name"
@@ -51,6 +71,8 @@ const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
             className="nameInput"
             name="lastName"
             onChange={onChangeField}
+            submited={submited}
+            validFuilds={validFuilds}
             value={baseData.lastName || ''}
           />
         </div>
@@ -60,6 +82,8 @@ const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
           className="nameInput"
           name="email"
           onChange={onChangeField}
+          submited={submited}
+          validFuilds={validFuilds}
           value={baseData.email || ''}
         />
         <InputElement
@@ -68,6 +92,8 @@ const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
           className="nameInput"
           name="confirmEmail"
           onChange={onChangeField}
+          submited={submited}
+          validFuilds={validFuilds}
           value={baseData.confirmEmail || ''}
         />
         <InputElement
@@ -76,10 +102,12 @@ const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
           className="nameInput"
           name="password"
           onChange={onChangeField}
+          submited={submited}
+          validFuilds={validFuilds}
           value={baseData.password || ''}
         />
         <p className="desc">Signing up for a Hoory account means you agree to the PP and T&S</p>
-        <SubmitWizard text="Create account" />
+        <SubmitWizard text="Create account" onClick={next} />
         <p className="signin">Have an account? <Link to="/signin">Sign in</Link></p>
       </div>
     </div>
