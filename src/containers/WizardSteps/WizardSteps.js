@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import searchActions from '../../redux/search/actions';
-import StepIcon from '../../components/StepIcon'
-import HooryIcon from '../../assets/hoory logo white.png'
+import StepIcon from '../../components/StepIcon';
+import HooryIcon from '../../assets/hoory logo white.png';
 import './WizardStepsStyle.scss';
 
 
@@ -35,7 +35,7 @@ const  WizardSteps  = (props) => {
 				to="/3"
 				activeClassName="activeLink"
 				className="menuItem"
-				>
+			>
 				<StepIcon /> Create your account
 			</NavLink>
 		</div>

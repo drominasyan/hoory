@@ -1,8 +1,10 @@
 // import { reducer as formReducer } from 'redux-form';
-import listReducer from './toDoList/reducer';
-import searchReducer from './search/reducer';
+import Users from './users/reducer';
+import App from './app/reducer';
+import Wizard from './wizardMenu/reducer';
 
 export default {
-  listReducer,
-  searchReducer,
+  Users,
+  Wizard,
+  App,
 };

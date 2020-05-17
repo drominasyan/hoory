@@ -1,9 +1,14 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
 
 import reducers from './reducers';
+import rootSaga from './sagas';
 
 const history = createBrowserHistory();
+const sagaMiddleware  = createSagaMiddleware();
+const middlewares     = [sagaMiddleware];
+
 
 const composeEnhancers = (
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -15,7 +20,8 @@ const store = createStore(
   combineReducers({
     ...reducers,
   }),
-  composeEnhancers(),
+  composeEnhancers(applyMiddleware(...middlewares)),
 );
 
+sagaMiddleware.run(rootSaga);
 export { store, history };

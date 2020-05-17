@@ -4,7 +4,7 @@ import { gbColorsSchema, borderColors } from '../../constants/colors';
 import './ColorSchemaStyle.scss';
 
 const ColorSchema = (props) => {
-    const { selectColor, colorNumber, selected } = props;
+    const { onClick, colorNumber, selected } = props;
     const colorStyle = `linear-gradient(${gbColorsSchema[colorNumber]})`;
     const borderColor = selected ? borderColors[colorNumber] : 'transparent';
     const schemaBackground = {
@@ -17,15 +17,15 @@ const ColorSchema = (props) => {
         // We are using inline styles becouse we are not allowed to use npm packeges (like styled components) by task requirement
         // We need to avoid Inlie styles in the feature because it is not the best practise
         <div className="colorsWrapper" style={boderColor}>
-            <div onClick={selectColor} data-id = {1} style={schemaBackground} />
+            <div onClick={onClick} data-id = {1} style={schemaBackground} />
         </div>
     );
 };
 
 ColorSchema.propTypes = {
     colorNumber : PropTypes.number.isRequired,
-    selected : PropTypes.bool.isRequired,
-    selectColor : PropTypes.func.isRequired,
+    selected    : PropTypes.bool.isRequired,
+    onClick : PropTypes.func.isRequired,
     // active  	 : PropTypes.bool.isRequired,
 };
 
