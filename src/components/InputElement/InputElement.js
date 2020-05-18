@@ -36,8 +36,12 @@ InputElement.propTypes = {
     placeholder : PropTypes.string.isRequired,
     type        : PropTypes.string.isRequired,
     onChange    : PropTypes.func.isRequired,
-    validFuilds : PropTypes.array.isRequired,
+    validFuilds : PropTypes.array,
     submited : PropTypes.bool.isRequired,
+};
+
+InputElement.defaultProps = {
+    validFuilds : [],
 };
 
 export default React.memo(InputElement);

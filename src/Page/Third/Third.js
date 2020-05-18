@@ -45,8 +45,10 @@ const  Third = ({ baseData, dataRefresh, uiRefresh, wizardRefrash }) => {
     if (array.length) {
       return setValidFuilds([array[0]]);
     }
+    // Bellow function we need to call in middlware after resiving response for success authentication,;
+    // Now we are only checking the valid data and when the validation success navigating the next step.
+    // Pls. take a look that we don't have any API
     wizardRefrash({ 3 : wizardStatuses.success });
-
     return history.push('/4');
   };
 

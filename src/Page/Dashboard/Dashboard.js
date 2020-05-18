@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Users from '../../containers/users';
-import usersActions from '../../redux/users/actions';
 import wizardActions from '../../redux/wizardMenu/actions';
+import authActions from '../../redux/auth/actions';
 import { history }  from '../../redux/store';
-import logout from '../../assets/logout.svg';
+import logoutIcon from '../../assets/logout.svg';
 import profileImg from '../../assets/fepro.webp';
 import './DashboardStyle.scss';
 
-const Dashboard = ({ uiRefresh }) => {
+const Dashboard = ({ uiRefresh, logout }) => {
 
     const addWorkspace = () => {
         uiRefresh({ newWorkspace : true, editMode : false });
@@ -28,9 +28,9 @@ const Dashboard = ({ uiRefresh }) => {
                         <p>yaya@mail.ru</p>
                     </div>
                 </div>
-                <div className="logout">
+                <div className="logout" onClick={logout}>
                     <p>Logout
-                        <img src={logout} alt="logout" />
+                        <img src={logoutIcon} alt="logout" />
                     </p>
                 </div>
             </div>
@@ -42,10 +42,11 @@ const Dashboard = ({ uiRefresh }) => {
 
 Dashboard.propTypes = {
     uiRefresh     : PropTypes.func.isRequired,
+    logout     : PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
-  logout  : usersActions.logout,
+  logout  : authActions.logout,
   uiRefresh    : wizardActions.uiRefresh,
 };
 

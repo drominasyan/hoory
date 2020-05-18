@@ -1,5 +1,4 @@
-import { all, takeEvery, put, fork, call, select } from 'redux-saga/effects';
-import find from 'lodash/find';
+import { all, takeEvery, put, fork, call } from 'redux-saga/effects';
 import { history } from '../store';
 import { apiLogin } from '../../helpers/api/auth';
 
@@ -10,12 +9,6 @@ function clearLocalStorage() {
   localStorage.removeItem('id_token');
   localStorage.removeItem('token');
   localStorage.removeItem('user');
-  localStorage.removeItem('sidebar');
-  localStorage.removeItem('language');
-  localStorage.removeItem('appTabs');
-  localStorage.removeItem('usersFilter');
-  localStorage.removeItem('transactions');
-  localStorage.removeItem('websiteID');
 }
 
 export function* loginRequest() {
@@ -66,7 +59,7 @@ export function* loginError() {
 export function* logout() {
   yield takeEvery(actions.LOGOUT, function* () {
     yield call(clearLocalStorage);
-    yield put(history.push('/signin'));
+    yield put(history.push('/1'));
   });
 }
 

@@ -17,7 +17,7 @@ import { validateEmail } from '../../helpers/utils';
 
 import './SignInStyle.scss';
 
-const  SignIn = ({ baseData, dataRefresh, uiRefresh, login }) => {
+const  SignIn = ({ baseData, dataRefresh, uiRefresh }) => {
   const [errorMessage, setErrorMessage] = useState('');
   // Local Events ---------------------------------------------------------------------------------
   const onChangeField = (e) => {
@@ -43,8 +43,10 @@ const  SignIn = ({ baseData, dataRefresh, uiRefresh, login }) => {
       return setErrorMessage('Invalid username or password');
     }
     setErrorMessage('');
-    login();
     // If there is no Error
+    // Bellow function we need to call in middlware after resiving response for success authentication,;
+    // Now we are only checking the valid data and when the validation success navigating the dashboard.
+    // Pls. take a look that we don't have any API
     history.push('/dashboard');
   };
 
@@ -88,7 +90,6 @@ SignIn.propTypes = {
     baseData      : PropTypes.object.isRequired,
     uiRefresh     : PropTypes.func.isRequired,
     dataRefresh   : PropTypes.func.isRequired,
-    login         : PropTypes.func.isRequired,
 };
 function mapStateToProps(state) {
   const UI = deriveAuthUI(state);
