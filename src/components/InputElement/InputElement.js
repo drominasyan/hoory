@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './InputElementStyle.scss';
-// eslint-disable-next-line camelcase
-import { ic_info_outline } from 'react-icons-kit/md/ic_info_outline';
+import { ic_info_outline as IconShowInformation } from 'react-icons-kit/md/ic_info_outline';
 import { Icon } from 'react-icons-kit';
 import { infoErrorMessages } from '../../constants/infoMessages';
 import passwordIcon from '../../assets/password visibility.svg';
@@ -22,13 +21,11 @@ const InputElement = ({ name, value, placeholder, validFuilds, onChange, type, s
         }
     };
 
-    // eslint-disable-next-line camelcase
-    const iconShowInformation = ic_info_outline;
 	return (
         <div className={`${fuildIsValid ? 'hideError' : 'showError'} inputBlock`}>
             <input type={type} name={name} value={value} placeholder={placeholder} onChange={onChange} className = {`${type === 'password' && 'password'} stringInput`} />
-            {!fuildIsValid && <span className={`showInfo ${type === 'password' ? 'showPassword' : ''}`} title={infoErrorMessages[name]}><Icon icon = {iconShowInformation} /></span>}
-            {type === 'password' && <img src={passwordIcon} alt="password" className="passwordIcon" onClick={showPass} />}
+            {!fuildIsValid && <span className={`showInfo ${type === 'password' ? 'showPassword' : ''}`} title={infoErrorMessages[name]}><Icon icon = {IconShowInformation} /></span>}
+            {type === 'password' && <div onClick={showPass}><img src={passwordIcon} alt="password" className="passwordIcon" /></div>}
         </div>
     );
 };

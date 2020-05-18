@@ -1,22 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'react-icons-kit';
-import { ic_done } from 'react-icons-kit/md/ic_done';
+import { ic_done as IconType } from 'react-icons-kit/md/ic_done';
+import { wizardStatuses } from '../../constants/statuses';
+
 import './StepIconStyle.scss';
 
-const StepIcon = (props) => {
-	const { complated, active } = props;
-    const classNames = `${complated && 'complated'}`;
+const StepIcon = ({ status }) => {
+    let classNames;
+	if (status === wizardStatuses.current) {
+		classNames = 'current';
+	} else if (status === wizardStatuses.success) {
+		classNames = 'success';
+	} else {
+		classNames = 'wait';
+	}
 	return (
-		<span className={`step`}>
-			{<Icon  icon = {ic_done} />}
-		</span>
-	)
-}
+		<div className="stepIconBlock">
+			<span className={`step ${classNames}`}>
+				<Icon icon = {IconType} />
+			</span>
+		</div>
+	);
+};
 
 StepIcon.propTypes = {
-    // complated  	 : PropTypes.bool.isRequired,
-    // active  	 : PropTypes.bool.isRequired,
+    status : PropTypes.number.isRequired,
 };
 
 export default StepIcon;

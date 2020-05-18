@@ -7,13 +7,15 @@ import hooryBg from '../../assets/hoory icon grey.svg';
 import SubmitWizard from '../../components/SubmitWizard';
 import InputElement from '../../components/InputElement';
 import usersActions from '../../redux/users/actions';
+import wizardActions from '../../redux/wizardMenu/actions';
+import { wizardStatuses } from '../../constants/statuses';
 import {
   deriveUserBaseData,
   deriveUsersUI,
 } from '../../selectors/users';
 import './FirstStyle.scss';
 
-const  First = ({ baseData, dataRefresh, uiRefresh }) => {
+const  First = ({ baseData, dataRefresh, uiRefresh, wizardRefrash }) => {
   const [validFuilds, setValidFuilds] = useState([]);
   const [submited, setSubmited] = useState(false);
   // Local Events ---------------------------------------------------------------------------------
@@ -33,9 +35,10 @@ const  First = ({ baseData, dataRefresh, uiRefresh }) => {
 
   const next = () => {
     setSubmited(true);
-    if (!baseData.name) {
-      return setValidFuilds(['name']);
+    if (!baseData.asisName) {
+      return setValidFuilds(['asisName']);
     }
+    wizardRefrash({ 1 : wizardStatuses.success, 2 :  wizardStatuses.current });
     // // eslint-disable-next-line no-restricted-globals
     return history.push('./2');
   };
@@ -48,13 +51,13 @@ const  First = ({ baseData, dataRefresh, uiRefresh }) => {
       <h3 className="assistentName">Name your assistant</h3>
       <InputElement
         placeholder="Your assistant's name"
-        name="name"
+        name="asisName"
         type="text"
         className="nameInput"
         onChange={onChangeField}
         submited={submited}
         validFuilds={validFuilds}
-        value={baseData.name || ''}
+        value={baseData.asisName || ''}
       />
       <SubmitWizard text="Start" onClick={next} />
     </>
@@ -65,6 +68,7 @@ First.propTypes = {
     baseData      : PropTypes.object.isRequired,
     uiRefresh     : PropTypes.func.isRequired,
     dataRefresh   : PropTypes.func.isRequired,
+    wizardRefrash   : PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -78,6 +82,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   dataRefresh  : usersActions.baseDataRefresh,
+	wizardRefrash : wizardActions.wizardRefrash,
   uiRefresh    : usersActions.uiRefresh,
 };
 

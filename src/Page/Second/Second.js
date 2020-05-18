@@ -8,6 +8,10 @@ import ColorSchema from '../../components/SelectColorSchema';
 import SelectIcon from '../../components/SelectIcon';
 import SubmitWizard from '../../components/SubmitWizard';
 import usersActions from '../../redux/users/actions';
+import wizardActions from '../../redux/wizardMenu/actions';
+import { wizardStatuses } from '../../constants/statuses';
+
+
 import {
   deriveUserBaseData,
   deriveUsersUI,
@@ -17,7 +21,7 @@ import './SecondStyle.scss';
 
 const listColors = Object.keys(gbColorsSchema);
 
-const  Second = ({ baseData, dataRefresh, uiRefresh }) => {
+const  Second = ({ baseData, dataRefresh, uiRefresh, wizardRefrash, editMode, esitUser, newWorkspace, addNewWorkSpace }) => {
 
   // Local Events ---------------------------------------------------------------------------------
   const onChangeSchema = (dataID) => {
@@ -46,7 +50,19 @@ const  Second = ({ baseData, dataRefresh, uiRefresh }) => {
 
   const next = () => {
     // // eslint-disable-next-line no-restricted-globals
+    wizardRefrash({ 2 : wizardStatuses.success, 3 :  wizardStatuses.current });
+    if (editMode) {
+      history.push('./dashboard');
+      return esitUser();
+    }
+
+    if (newWorkspace) {
+      history.push('./dashboard');
+      return addNewWorkSpace();
+    }
+
     return history.push('./3');
+
   };
 
   return (
@@ -68,22 +84,34 @@ const  Second = ({ baseData, dataRefresh, uiRefresh }) => {
 Second.propTypes = {
     baseData      : PropTypes.object.isRequired,
     uiRefresh     : PropTypes.func.isRequired,
+    wizardRefrash   : PropTypes.func.isRequired,
     dataRefresh   : PropTypes.func.isRequired,
+    esitUser   : PropTypes.func.isRequired,
+    editMode   : PropTypes.bool.isRequired,
+    newWorkspace   : PropTypes.bool.isRequired,
+    addNewWorkSpace   : PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   const UI = deriveUsersUI(state);
   const baseData = deriveUserBaseData(state);
+  const wizrdUI = state.Wizard.get('UI');
+
 
   return {
     UI,
     baseData,
+    editMode:wizrdUI.editMode,
+    newWorkspace:wizrdUI.newWorkspace,
   };
 }
 
 const mapDispatchToProps = {
-  dataRefresh  : usersActions.baseDataRefresh,
+  dataRefresh      : usersActions.baseDataRefresh,
+  addNewWorkSpace  : usersActions.addNewWorkSpace,
+	wizardRefrash : wizardActions.wizardRefrash,
   uiRefresh    : usersActions.uiRefresh,
+  esitUser    : usersActions.editUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Second);

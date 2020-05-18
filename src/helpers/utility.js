@@ -1,3 +1,14 @@
+//Storing data locaStorage
+export function storeInStorage(key, data) {
+    return localStorage.setItem(key, JSON.stringify(data));
+}
+
+//Getting data from localStorage
+export function getFromeLocalStorage(key) {
+    const data = localStorage.getItem(key);
+    return JSON.parse(data) || {};
+}
+
 export function clearToken() {
   localStorage.removeItem('id_token');
 }
@@ -15,6 +26,7 @@ export function getToken() {
     return null;
   }
 }
+
 
 export function getRawToken() {
   return localStorage.getItem('id_token');
@@ -35,5 +47,6 @@ const utils = {
   getToken,
   getRawToken,
 };
+
 
 export default utils;

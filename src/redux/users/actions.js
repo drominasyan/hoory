@@ -4,6 +4,8 @@ const actions = {
 	USERS_LIST_REFRESH            : 'USERS_LIST_REFRESH',
 
 	REMOVE_USER_FROM_LIST         : 'REMOVE_USER_FROM_LIST',
+	EDIT_USER_FROM_LIST           : 'EDIT_USER_FROM_LIST',
+	ADD_NEW_WORKSPACE             : 'ADD_NEW_WORKSPACE',
 
 	USER_BASE_DATA_RELOAD         : 'USER_BASE_DATA_RELOAD',
 	USER_BASE_DATA_REFRESH        : 'USER_BASE_DATA_REFRESH',
@@ -13,6 +15,12 @@ const actions = {
 
 	listReload: () => ({
 		type: actions.USERS_LIST_RELOAD,
+	}),
+	addNewWorkSpace: () => ({
+		type: actions.ADD_NEW_WORKSPACE,
+	}),
+	editUser: () => ({
+		type: actions.EDIT_USER_FROM_LIST,
 	}),
 	listRefresh: list => ({
 		type: actions.USERS_LIST_REFRESH,

@@ -7,8 +7,10 @@ export function usersList(params = {}) {
 		url: '/users',
 		params,
 	};
+	// returning true expecting the server response status is 200
+	return true;
 
-	return apiRequest(req);
+	// return apiRequest(req);
 }
 
 // get list of users without restrictions

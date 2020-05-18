@@ -1,24 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { statuses } from '../../Helpers/constants';
-import './listTableStyle.css';
+import { Icon } from 'react-icons-kit';
+import { ic_mode_edit as Edit } from 'react-icons-kit/md/ic_mode_edit';
+import { ic_more_vert as More }  from 'react-icons-kit/md/ic_more_vert';
+import { ic_delete as Delete } from 'react-icons-kit/md/ic_delete';
+import SelectIcon from '../SelectIcon';
+import './listTableStyle.scss';
 
 const  ListTable = (props) => {
 
-    const { list, removeItem, changeStatus } = props;
+    const { list, onRemove, onEdit } = props;
     const renderTableData = () => {
         return list.map(item => {
-           const { title, status, description, id } = item;
+           const { asisName, colorSchema, gender, id } = item;
            return (
-                <tr key={id}>
-                    <td>
-                        <p><b>{title}</b></p>
-                        <p>{description}</p>
-                    </td>
-                    <td>
-                        <div data-id={id} onClick={removeItem}>Remove</div>
-                    </td>
-                </tr>
+                <div key={id} data-id={id}>
+                    <div><SelectIcon number={colorSchema} type={gender} />{asisName}</div>
+                    <div className="moreBlock">
+                        <div className="actions">
+                            <span onClick={() => onEdit(id)}><Icon icon = {Edit} /></span>
+                            <span className="delete hidden" onClick={() => onRemove(id)}><Icon icon = {Delete} /></span>
+                            <span className="more"><Icon icon = {More} /></span>
+                        </div>
+                    </div>
+                </div>
            );
         });
     };
@@ -28,26 +33,15 @@ const  ListTable = (props) => {
     }
 
     return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>To-do item</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {renderTableData()}
-                </tbody>
-            </table>
+        <div className="list">
+            {renderTableData()}
         </div>
     );
 };
 
 ListTable.propTypes = {
-    list         : PropTypes.array.isRequired,
-    changeStatus : PropTypes.func.isRequired,
-    removeItem   : PropTypes.func.isRequired,
+    list       : PropTypes.array.isRequired,
+    onRemove   : PropTypes.func.isRequired,
+    onEdit     : PropTypes.func.isRequired,
 };
 export default React.memo(ListTable);

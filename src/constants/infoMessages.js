@@ -5,4 +5,4 @@ export const infoErrorMessages = {
     email : 'Invalid Email address',
     confirmEmail : 'Email addresses do not match.',
     password : 'Password should contain at least 8 symbols.',
-}
+};

@@ -13,9 +13,11 @@ import {
   deriveUserBaseData,
   deriveUsersUI,
 } from '../../selectors/users';
+import wizardActions from '../../redux/wizardMenu/actions';
+import { wizardStatuses } from '../../constants/statuses';
 import './ThirdStyle.scss';
 
-const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
+const  Third = ({ baseData, dataRefresh, uiRefresh, wizardRefrash }) => {
 
   const [validFuilds, setValidFuilds] = useState([]);
   const [submited, setSubmited] = useState(false);
@@ -43,6 +45,8 @@ const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
     if (array.length) {
       return setValidFuilds([array[0]]);
     }
+    wizardRefrash({ 3 : wizardStatuses.success });
+
     return history.push('/4');
   };
 
@@ -117,13 +121,13 @@ const  Third = ({ baseData, dataRefresh, uiRefresh }) => {
 Third.propTypes = {
     baseData      : PropTypes.object.isRequired,
     uiRefresh     : PropTypes.func.isRequired,
+    wizardRefrash : PropTypes.func.isRequired,
     dataRefresh   : PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   const UI = deriveUsersUI(state);
   const baseData = deriveUserBaseData(state);
-
   return {
     UI,
     baseData,
@@ -132,6 +136,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   dataRefresh  : usersActions.baseDataRefresh,
+	wizardRefrash : wizardActions.wizardRefrash,
   uiRefresh    : usersActions.uiRefresh,
 };
 
