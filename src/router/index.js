@@ -1,39 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch, Router, Redirect } from 'react-router-dom';
+import { Route, Switch, Router } from 'react-router-dom';
 import Root from '../containers/Root';
 import Dashboard from '../Page/Dashboard';
 
-// const RestrictedRoute = ({ component: Component, isLoggedIn, ...rest }) => {
-
-//   if (isLoggedIn && rest.path === '/' && rest.exact) {
-//     return (
-//       <Route
-//         {...rest}
-//         render={() => (
-//           <Redirect to={{ pathname: '/dashboard' }} />
-//         )}
-//       />
-//     );
-//   }
-
-//   return (
-//     <Route
-//       {...rest}
-//       render={props => isLoggedIn ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect to={{
-//               pathname: '/signin',
-//               state: { from: props.location },
-//             }}
-//           />
-//         )
-//       }
-//     />
-//   );
-// };
-
+// We need to create resctected routes in future to ckeck the user token.
 const PublicRoutes = (props) => {
 
     const { history } = props;
