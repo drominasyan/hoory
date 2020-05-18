@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { API_URL } from '../../config';
 import { getRawToken } from '../utility';
 
+//We dont have any API
+const API_URL = '';
 export function apiRequest(req) {
   const url       = API_URL + req.url;
   const token     = getRawToken();
